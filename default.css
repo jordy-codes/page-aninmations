@@ -1,81 +1,105 @@
-/* General Demo Style */
-@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700|Satisfy);
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Satisfy&display=swap');
 
-@font-face {
-	font-family: 'codropsicons';
-	src:url('../fonts/codropsicons/codropsicons.eot');
-	src:url('../fonts/codropsicons/codropsicons.eot?#iefix') format('embedded-opentype'),
-		url('../fonts/codropsicons/codropsicons.woff') format('woff'),
-		url('../fonts/codropsicons/codropsicons.ttf') format('truetype'),
-		url('../fonts/codropsicons/codropsicons.svg#codropsicons') format('svg');
-	font-weight: normal;
-	font-style: normal;
+/* ====== Variables ====== */
+:root {
+	--font-primary: 'Lato', Calibri, Arial, sans-serif;
+	--font-icons: 'codropsicons';
+	--color-text: #fff;
+	--color-bg: #333;
+	--color-link: #ddd;
+	--color-link-hover: #fff;
+	--color-button-hover: #b7b7b7;
+	--color-button-bg-hover: #eaeff7;
+	--header-bg: rgba(255, 255, 255, 0.1);
+	--header-bg-hover: rgba(255, 255, 255, 0.2);
 }
 
-*, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
-body, html { font-size: 100%; padding: 0; margin: 0;}
-
-/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
-.clearfix:before, .clearfix:after { content: " "; display: table; }
-.clearfix:after { clear: both; }
-
-body {
-	font-family: 'Lato', Calibri, Arial, sans-serif;
-	color: #fff;
-	background: #333;
+/* ====== Base Reset ====== */
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+html, body {
+	font-size: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: var(--font-primary);
+	color: var(--color-text);
+	background: var(--color-bg);
 	overflow: hidden;
 }
 
+/* ====== Clearfix ====== */
+.clearfix::before,
+.clearfix::after {
+	content: "";
+	display: table;
+}
+.clearfix::after {
+	clear: both;
+}
+
+/* ====== Typography & Links ====== */
 a {
-	color: #ddd;
+	color: var(--color-link);
 	text-decoration: none;
 }
-
 a:hover {
-	color: #fff;
+	color: var(--color-link-hover);
+}
+a:focus, button:focus, .dl-trigger:focus {
+	outline: 2px dashed var(--color-link-hover);
+	outline-offset: 3px;
 }
 
-button:hover, .dl-trigger:hover{
-	color : #b7b7b7;
-	background-color:#eaeff7;
+/* ====== Buttons ====== */
+button:hover,
+.dl-trigger:hover {
+	color: var(--color-button-hover);
+	background-color: var(--color-button-bg-hover);
 }
 
-/* Header Style */
+/* ====== Header ====== */
 .codrops-top {
-	background: #fff;
-	background: rgba(255, 255, 255, 0.1);
+	background: var(--header-bg);
 	text-transform: uppercase;
 	position: fixed;
-	width: 100%;
-	font-size: 0.68em;
-	line-height: 2.2;
-	z-index: 50000;
 	top: 0;
 	left: 0;
+	width: 100%;
+	z-index: 50000;
+	font-size: 0.68em;
+	line-height: 2.2;
 }
-
 .codrops-top a {
 	padding: 0 1em;
 	letter-spacing: 0.1em;
-	color: #fff;
+	color: var(--color-text);
 	display: inline-block;
 }
-
 .codrops-top a:hover {
-	background: rgba(255,255,255,0.2);
+	background: var(--header-bg-hover);
 }
-
 .codrops-top span.right {
 	float: right;
 }
-
 .codrops-top span.right a {
 	float: left;
 	display: block;
 }
 
-.codrops-icon:before {
-	font-family: 'codropsicons';
+/* ====== Icons ====== */
+@font-face {
+	font-family: var(--font-icons);
+	src: url('../fonts/codropsicons/codropsicons.eot');
+	src: url('../fonts/codropsicons/codropsicons.eot?#iefix') format('embedded-opentype'),
+	     url('../fonts/codropsicons/codropsicons.woff') format('woff'),
+	     url('../fonts/codropsicons/codropsicons.ttf') format('truetype'),
+	     url('../fonts/codropsicons/codropsicons.svg#codropsicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+.codrops-icon::before {
+	font-family: var(--font-icons);
 	margin: 0 4px;
 	speak: none;
 	font-style: normal;
@@ -85,25 +109,15 @@ button:hover, .dl-trigger:hover{
 	line-height: 1;
 	-webkit-font-smoothing: antialiased;
 }
-.codrops-icon-drop:before {
-	content: "\e001";
-}
-.codrops-icon-prev:before {
-	content: "\e004";
-}
-.codrops-icon-archive:before {
-	content: "\e002";
-}
-.codrops-icon-next:before {
-	content: "\e000";
-}
-.codrops-icon-about:before {
-	content: "\e003";
-}
+.codrops-icon-drop::before { content: "\e001"; }
+.codrops-icon-prev::before { content: "\e004"; }
+.codrops-icon-archive::before { content: "\e002"; }
+.codrops-icon-next::before { content: "\e000"; }
+.codrops-icon-about::before { content: "\e003"; }
 
-@media screen and (max-width: 25em) { 
+/* ====== Responsive ====== */
+@media (max-width: 400px) {
 	.codrops-icon span {
 		display: none;
 	}
 }
-
